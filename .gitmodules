@@ -1,0 +1,6 @@
+[submodule "templater"]
+	path = templater
+	url = https://github.com/iAmMortos/templater.git
+[submodule "data/FightClub5eXML"]
+	path = data/FightClub5eXML
+	url = https://github.com/iAmMortos/FightClub5eXML.git
