@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from model.data_loader import DataLoader
 
 def create_app(test_config=None):
   # create and configure the app
@@ -17,15 +18,15 @@ def create_app(test_config=None):
     # load the test config if passed in
     app.config.from_mapping(test_config)
 
+  app.config["data_loader"] = DataLoader("Complete")
+
   # ensure the instance folder exists
   try:
     os.makedirs(app.instance_path)
   except OSError:
     pass
 
-  # a simple page that says hello
-  @app.route('/hello')
-  def hello():
-    return 'Hello, World!'
+  from .routes import main
+  app.register_blueprint(main)
 
   return app

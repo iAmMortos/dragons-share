@@ -1,4 +1,4 @@
-
+from gc import get_stats
 
 from model.background import Background
 from model.char_class import CharClass
@@ -109,15 +109,17 @@ class DataLoader (object):
   def spells(self):
     return list(self._spls.values())
 
-  def print_stats(self):
-    import sys
-  
-    print("Backgrounds: %s item(s)" % len(self._bgs))
-    print("Classes: %s item(s)" % len(self._cls))
-    print("Feats: %s item(s)" % len(self._fts))
-    print("Items: %s item(s)" % len(self._itms))
-    print("Monsters: %s item(s)" % len(self._mnsts))
-    print("Races: %s item(s)" % len(self._rcs))
-    print("Spells: %s item(s)" % len(self._spls))
-    print(f"Memory Used: {sys.getsizeof(self)}B")
+  def get_stats(self):
+    stats = f"""
+    Backgrounds: {len(self._bgs)} item(s)
+    Classes: {len(self._cls)} item(s)
+    Feats: {len(self._fts)} item(s)
+    Items: {len(self._itms)} item(s)
+    Monsters: {len(self._mnsts)} item(s)
+    Races: {len(self._rcs)} item(s)
+    Spells: {len(self._spls)} item(s)
+    """
+    return stats
 
+  def print_stats(self):
+    print(get_stats())

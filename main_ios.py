@@ -1,13 +1,13 @@
 # An entrypoint for app development
 import ui
-import dragons_share_app
+import app
 import sys
 
 STARTING_PAGE = '/hello'
 
 @ui.in_background
 def launch_background_app():
-  app = dragons_share_app.create_app()
+  app = app.create_app()
   
   with app.app_context():
     app.run(use_reloader=False, debug=True, port=5001)      
