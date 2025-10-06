@@ -7,11 +7,14 @@ main = Blueprint("main", __name__)
 def index():
   query = request.args.get("q", "").lower()
   dl = current_app.config["data_loader"]
-  s = dl.get_stats().replace('\n', '<br/>')
-  return f'{s}'
+  objs = dl.monsters()
+  return render_template("index.html", objects=objs, query=query)
 
 # a simple page that says hello
 @main.route('/object/<name>')
 def object_detail(name):
   dl = current_app.config["data_loader"]
-  return f'A page for {name}!'
+  obj = dl.get_monster(name)
+  if not obj:
+    abort(404)
+  return render_template("detail.html", obj=obj)

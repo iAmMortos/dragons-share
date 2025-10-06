@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="get" action="{{ url_for('main.index') }}">
+    <input type="text" name="q" placeholder="Search by name..." value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+{% for obj in objects %}
+    <li><a href="{{ url_for('main.object_detail', name=obj.name) }}">{{ obj.name }}</a></li>
+{% else %}
+    <li>No objects found.</li>
+{% endfor %}
+</ul>
+{% endblock %}
