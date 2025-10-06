@@ -7,7 +7,9 @@
 
 <ul>
 {% for obj in objects %}
+    {% if query in obj.name.lower() %}
     <li><a href="{{ url_for('main.object_detail', name=obj.name) }}">{{ obj.name }}</a></li>
+    {% endif %}
 {% else %}
     <li>No objects found.</li>
 {% endfor %}
