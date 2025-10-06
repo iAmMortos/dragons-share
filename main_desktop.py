@@ -9,7 +9,8 @@ def signal_handler(sig, frame):
 ds_app = app.create_app()
 
 def launch_background_app():
-  ds_app.run(debug=True, port=5001, host='localhost')
+  with ds_app.app_context():
+    ds_app.run(debug=True, port=5001, host='localhost')
 
 if __name__ == '__main__':
   launch_background_app()

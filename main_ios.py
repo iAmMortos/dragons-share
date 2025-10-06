@@ -3,14 +3,14 @@ import ui
 import app
 import sys
 
-STARTING_PAGE = '/hello'
+STARTING_PAGE = '/'
 
 @ui.in_background
 def launch_background_app():
-  app = app.create_app()
+  ds_app = app.create_app()
   
-  with app.app_context():
-    app.run(use_reloader=False, debug=True, port=5001)      
+  with ds_app.app_context():
+    ds_app.run(use_reloader=False, debug=True, port=5001)      
 
         
 def show_web_browser():
