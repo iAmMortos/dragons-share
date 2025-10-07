@@ -30,6 +30,7 @@ def object_detail(name):
     
   bpobj.monsters = []
   bpobj.monsters.append(mnst)
-  html = tmpltr.make(bpobj, "statblock_page")
+  block = tmpltr.make(bpobj, "statblock_page")
   
-  return html
+  # return render_template("detail.html", statblock=block)
+  return block
