@@ -14,7 +14,22 @@ def index():
 @main.route('/object/<name>')
 def object_detail(name):
   dl = current_app.config["data_loader"]
-  obj = dl.get_monster(name)
-  if not obj:
+  tmpltr = current_app.config["templater"]
+  mnst = dl.get_monster(name)
+  if not mnst:
     abort(404)
-  return render_template("detail.html", obj=obj)
+  
+  class BlockPageObj (object):
+    pass
+  bpobj = BlockPageObj()
+  bpobj.title=mnst.name
+  with open('templater/templates/html/css/statblock.css') as f:
+    bpobj.statblock_style = f.read()
+  with open('templater/templates/html/css/statblock_page.css') as f:
+    bpobj.page_style = f.read()
+    
+  bpobj.monsters = []
+  bpobj.monsters.append(mnst)
+  html = tmpltr.make(bpobj, "statblock_page")
+  
+  return html

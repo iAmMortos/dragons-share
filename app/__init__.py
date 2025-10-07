@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 from model.data_loader import DataLoader
+from templater.templater import Templater
 
 def create_app(test_config=None):
   # create and configure the app
@@ -19,6 +20,7 @@ def create_app(test_config=None):
     app.config.from_mapping(test_config)
 
   app.config["data_loader"] = DataLoader("Complete")
+  app.config["templater"] = Templater('html')
 
   # ensure the instance folder exists
   try:
