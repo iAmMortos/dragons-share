@@ -20,7 +20,7 @@ def create_app(test_config=None):
     app.config.from_mapping(test_config)
 
   app.config["data_loader"] = DataLoader("Complete")
-  app.config["templater"] = Templater('html')
+  app.config["templater"] = Templater('html', 'model/templates')
 
   # ensure the instance folder exists
   try:
