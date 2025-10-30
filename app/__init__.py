@@ -20,8 +20,13 @@ def create_app(test_config=None):
     app.config.from_mapping(test_config)
 
   app.config["data_loader"] = DataLoader("Complete")
-  app.config["templater"] = Templater(
+  app.config["html_templater"] = Templater(
     output_type='html', 
+    template_dir='model/templates', 
+    template_config_path='model/templates/config/template.properties',
+    token_config_path='model/templates/config/token.properties')
+  app.config["md_templater"] = Templater(
+    output_type='markdown', 
     template_dir='model/templates', 
     template_config_path='model/templates/config/template.properties',
     token_config_path='model/templates/config/token.properties')

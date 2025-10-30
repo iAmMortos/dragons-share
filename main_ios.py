@@ -27,3 +27,4 @@ def show_web_browser():
 if __name__ == '__main__':
   launch_background_app()
   show_web_browser()
+

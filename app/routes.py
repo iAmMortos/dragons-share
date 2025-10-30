@@ -14,7 +14,8 @@ def index():
 @main.route('/object/<name>')
 def object_detail(name):
   dl = current_app.config["data_loader"]
-  tmpltr = current_app.config["templater"]
+  html_tmpltr = current_app.config["html_templater"]
+  md_tmpltr = current_app.config['md_templater']
   mnst = dl.get_monster(name)
   if not mnst:
     abort(404)
@@ -30,7 +31,7 @@ def object_detail(name):
     
   bpobj.monsters = []
   bpobj.monsters.append(mnst)
-  block = tmpltr.make(bpobj, "statblock_page")
+  block = html_tmpltr.make(bpobj, "statblock_page")
+  md = md_tmpltr.make(mnst, "monster")
   
-  # return render_template("detail.html", statblock=block)
-  return block
+  return render_template("detail.html", statblock=block, markdown=md)
