@@ -98,3 +98,7 @@ table {
   font-size: .7rem;
   font-style: italic;
 }
+
+.hiddenCode {
+	display: none;
+}
