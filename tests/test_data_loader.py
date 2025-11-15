@@ -8,12 +8,14 @@ def main():
   dl = DataLoader("Complete")
   dl.print_stats()
   
-  types = []
+  speeds = []
   for m in dl.monsters():
     speed = str(m.speed)
-    if 'walk 400' in speed:
-      print(m.name)
-      print(m.description)
+    if speed not in speeds:
+      speeds += [speed]
+  for s in sorted(speeds):
+    
+    print(s)
 if __name__ == '__main__':
   main()
   

@@ -122,4 +122,4 @@ class DataLoader (object):
     return stats
 
   def print_stats(self):
-    print(get_stats())
+    print(self.get_stats())
