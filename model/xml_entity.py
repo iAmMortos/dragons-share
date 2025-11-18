@@ -1,7 +1,4 @@
 
-import xml.etree.ElementTree as ET
-
-
 class XmlEntity (object):
   def __init__(self, xml_node):
     self._data = {}
@@ -99,6 +96,7 @@ class XmlEntity (object):
   @property
   def _xml_str(self):
     import xml.dom.minidom
+    import xml.etree.ElementTree as ET
     xml_str = ET.tostring(self._node, encoding='utf-8').replace(b'\n', b'')
     dom = xml.dom.minidom.parseString(xml_str)
     s = dom.toprettyxml()
